@@ -1,6 +1,12 @@
+import random
+
 def handleResponses(message) -> str:
-    comingMessage = message.lower()
+    processMessage = message.lower()
 
-    if comingMessage == '!hellobot':
-        return "Hello!"
+    if processMessage == 'hellobot':
+        return 'Hello!'
 
+    if processMessage == 'roll':
+        return str(random.randint(1,6))
+
+    
