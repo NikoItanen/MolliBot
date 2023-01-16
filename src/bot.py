@@ -4,8 +4,11 @@ import commands
 import pytube
 import io
 import asyncio
+import time
 
 
+
+#playTube will load audio track from sent url. playTube also start to play audio track.
 
 async def playTube(domain, userMessage, message, voiceChannel):
     try:
@@ -18,7 +21,7 @@ async def playTube(domain, userMessage, message, voiceChannel):
             vc.play(discord.FFmpegPCMAudio('./src/play.webm'))
             while vc.is_playing():
                 await asyncio.sleep(1)
-            vc.disconnect()
+            await vc.disconnect()
     except Exception as e:
         print(e)
 
@@ -64,14 +67,18 @@ def runMolliBot():
 
         # If there is "!" at begin of the command, bot will send message straight to the command author.
 
+
         if userMessage[0:5] == '/play':
             domain = userMessage[7:]
             voiceChannel = message.author.voice.channel
+            await sendMessage(message, userMessage, isPrivate=False)
             await playTube(domain, userMessage, message,voiceChannel)
 
-        if userMessage == '/connect':
-            await message.author.voice.channel.connect()
-
+        if userMessage == '/disconnect' or '/pause':
+            vc = message.guild.voice_client
+            await sendMessage(message, userMessage, isPrivate=False)
+            if vc is not None:
+                await vc.disconnect()
         
 
         if userMessage[0] == '!':

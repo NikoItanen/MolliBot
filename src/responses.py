@@ -11,14 +11,11 @@ def handleResponses(message):
     if processMessage == '/hellobot':
         return 'Hello!'
 
-    if processMessage == '/roll':
+    elif processMessage == '/roll':
         return str(random.randint(1,6))
 
-    if processMessage[0:5] == '/play':
-        return ('Now Playing: ' + (pytube.YouTube.title))
+    elif processMessage == '/play':
+        return 'Moro'
 
-    if processMessage == '/botstop':
-        try:
-            exit()
-        except Exception as e:
-            print ("Program has been stopped by using command")
+    elif processMessage == '/disconnect' or '/pause':
+        return 'Bot Disconnected'
