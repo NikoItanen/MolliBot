@@ -39,7 +39,7 @@ async def sendMessage(message, userMessage, isPrivate):
 # Run-method below
 
 def runMolliBot():
-    TOKEN = 'MTA1ODUxNzIyMTIyOTQ3Nzk0OA.GavomC.iJfcIxy0DFiNQGKrbCT90vpR8LN8keiIXESEGQ'
+    TOKEN = '{TOKEN}'
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents = intents)
